@@ -14,9 +14,10 @@ app.get("/", async (req,res)=>{
     const randomUsername = result.data.username;
     res.render("index.ejs" , {secret: randomSecret , user: randomUsername});
     }
-    catch (error){
-        res.render("index.ejs" , {secret: error.result.data , user: error.result.data});
-    }
+    catch (error) {
+    console.log(error.response.data);
+    res.status(500);
+  }
 })
 
 app.listen(port , ()=>{
